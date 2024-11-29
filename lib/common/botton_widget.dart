@@ -9,6 +9,8 @@ class ButtonWidget extends StatelessWidget {
   final Color? titleColor;
   final Color borderColor;
   final double fontSize;
+  final double? buttonWidth;
+  final double? buttonHeigth;
 
   const ButtonWidget({
     super.key,
@@ -19,6 +21,8 @@ class ButtonWidget extends StatelessWidget {
     this.titleColor = Colors.white,
     this.borderColor = Colors.transparent,
     this.fontSize = 15,
+    this.buttonHeigth,
+    this.buttonWidth
   });
 
   @override
@@ -34,7 +38,7 @@ class ButtonWidget extends StatelessWidget {
           borderRadius: BorderRadius.circular(8),
         ),
         backgroundColor: buttonColor,
-        minimumSize: Size(screenWidth(context), 54),
+        minimumSize: Size(buttonWidth??54, buttonHeigth??54),
       ),
       onPressed: onPressed,
       child: isLoading

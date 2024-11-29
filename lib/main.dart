@@ -1,5 +1,6 @@
 import 'package:ayurvadic/features/auth/screens/login_screen.dart';
-import 'package:ayurvadic/features/splash/screens/splash_screen.dart';
+import 'package:ayurvadic/features/home/screen/home_screen.dart';
+import 'package:ayurvadic/routes/route.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -11,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
        
@@ -18,6 +20,7 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: const LoginScreen(),
+      onGenerateRoute:RouteGenerator.generateRoute ,
     );
   }
 }
