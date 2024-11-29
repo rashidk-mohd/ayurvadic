@@ -1,4 +1,3 @@
-import 'package:ayurvadic/core/app_responsive.dart';
 import 'package:flutter/material.dart';
 
 class ButtonWidget extends StatelessWidget {

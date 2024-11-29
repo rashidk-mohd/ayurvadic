@@ -102,7 +102,10 @@ class RegistrationScreen extends StatelessWidget {
                   child: CustomTextField(
                       title: "Houre",
                       header: "",
-                      suffixWidget: Icon(CupertinoIcons.chevron_down,color: ColorConstents.buttonColor,)),
+                      suffixWidget: Icon(
+                        CupertinoIcons.chevron_down,
+                        color: ColorConstents.buttonColor,
+                      )),
                 ),
                 SizedBox(
                   width: 20,
@@ -111,7 +114,8 @@ class RegistrationScreen extends StatelessWidget {
                     child: CustomTextField(
                         title: "Minute",
                         header: "",
-                        suffixWidget: Icon(CupertinoIcons.chevron_down,color: ColorConstents.buttonColor)))
+                        suffixWidget: Icon(CupertinoIcons.chevron_down,
+                            color: ColorConstents.buttonColor)))
               ],
             )
             // PaymentOptionWidget()

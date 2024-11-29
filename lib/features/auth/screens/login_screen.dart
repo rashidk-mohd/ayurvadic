@@ -1,10 +1,12 @@
 import 'package:ayurvadic/common/botton_widget.dart';
 import 'package:ayurvadic/common/common_textfield.dart';
 import 'package:ayurvadic/contants/color_constents.dart';
-import 'package:ayurvadic/contants/routes_const.dart';
+import 'package:ayurvadic/features/auth/controller/aut_controller.dart';
+
 import 'package:ayurvadic/features/auth/widgets/app_logo_widget.dart';
 
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -53,14 +55,18 @@ class LoginScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.only(left: 12, right: 12, top: 30),
-            child: ButtonWidget(
-              title: "Login",
-              onPressed: () {
-                Navigator.of(context).pushReplacementNamed(Routes.home);
-              },
-              titleColor: Colors.white,
-              fontSize: 17,
-              buttonColor: ColorConstents.buttonColor,
+            child: Consumer<AuthController>(
+              builder: (context, value, child) =>  ButtonWidget(
+                isLoading: value.isLoading,
+                title: "Login",
+                onPressed: () {
+                  value.login(userName: "test_user", password: "12345678");
+                  // Navigator.of(context).pushReplacementNamed(Routes.home);
+                },
+                titleColor: Colors.white,
+                fontSize: 17,
+                buttonColor: ColorConstents.buttonColor,
+              ),
             ),
           ),
           // const PrivacyPolicy()
