@@ -1,5 +1,6 @@
 import 'package:ayurvadic/contants/routes_const.dart';
 import 'package:ayurvadic/features/home/screen/home_screen.dart';
+import 'package:ayurvadic/features/registration/screens/registration_screen.dart';
 import 'package:ayurvadic/features/splash/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -13,6 +14,10 @@ class RouteGenerator {
       case Routes.home:
         return MaterialPageRoute(
           builder: (context) => const HomeScreen(),
+        );
+      case Routes.registation:
+        return MaterialPageRoute(
+          builder: (context) => const RegistrationScreen(),
         );
 
       default:

@@ -3,8 +3,7 @@ import 'package:ayurvadic/common/common_textfield.dart';
 import 'package:ayurvadic/contants/color_constents.dart';
 import 'package:ayurvadic/contants/routes_const.dart';
 import 'package:ayurvadic/features/auth/widgets/app_logo_widget.dart';
-import 'package:ayurvadic/features/auth/widgets/privacy_policy.dart';
-import 'package:ayurvadic/features/home/screen/home_screen.dart';
+
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -36,35 +35,19 @@ class LoginScreen extends StatelessWidget {
                   color: ColorConstents.textcolor),
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 12),
-            child: Text(
-              "Email",
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                  color: ColorConstents.textcolor),
-            ),
-          ),
+
           const Padding(
             padding: EdgeInsets.only(left: 12, right: 12, bottom: 30),
             child: CustomTextField(
+              header: "Email",
               title: "Enter your email",
             ),
           ),
-          Padding(
-            padding: const EdgeInsets.only(left: 12),
-            child: Text(
-              "Password",
-              style: Theme.of(context).textTheme.bodyLarge?.copyWith(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w400,
-                  color: ColorConstents.textcolor2),
-            ),
-          ),
-           Padding(
+
+          const Padding(
             padding: EdgeInsets.only(left: 12, right: 12, bottom: 50),
             child: CustomTextField(
+              header: "Password",
               title: "Enter your password",
             ),
           ),
