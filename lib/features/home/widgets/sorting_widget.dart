@@ -25,6 +25,7 @@ class SortingWidget extends StatelessWidget {
           const SizedBox(
             width: 160,
             child: CustomTextField(
+              header: "",
               borderRadius: 30,
               title: "Date",
               suffixWidget: Icon(CupertinoIcons.chevron_down),

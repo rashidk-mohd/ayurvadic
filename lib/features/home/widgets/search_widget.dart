@@ -15,6 +15,7 @@ class SearchWidget extends StatelessWidget {
         const Expanded(
           flex: 3,
           child: CustomTextField(
+            header: "",
             iconWidget:Icon(Icons.search) ,
             title: "Search for treatment",
           ),

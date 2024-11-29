@@ -6,6 +6,9 @@ class ColorConstents {
   static const colorWhite=Colors.white;
   static const colorWhite2=Color(0xffFFFFFF);
   static const colorGrey=Colors.grey;
+  static const colorGrey2=Color(0xff389A48);
+ 
+
   static const buttonColor=Color(0xff006837);
   
 }

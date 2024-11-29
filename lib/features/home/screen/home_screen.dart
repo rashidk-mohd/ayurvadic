@@ -1,11 +1,10 @@
 import 'package:ayurvadic/common/botton_widget.dart';
-import 'package:ayurvadic/common/common_textfield.dart';
 import 'package:ayurvadic/contants/color_constents.dart';
 import 'package:ayurvadic/contants/path_constsnts.dart';
+import 'package:ayurvadic/contants/routes_const.dart';
 import 'package:ayurvadic/features/home/widgets/home_content_card.dart';
 import 'package:ayurvadic/features/home/widgets/search_widget.dart';
 import 'package:ayurvadic/features/home/widgets/sorting_widget.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -62,7 +61,9 @@ class HomeScreen extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: ButtonWidget(
           title: "Register Now",
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).pushNamed(Routes.registation);
+          },
           buttonColor: ColorConstents.buttonColor,
         ),
       ),
