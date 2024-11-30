@@ -254,10 +254,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             ButtonWidget(
               title: "Save",
               buttonColor: ColorConstents.buttonColor,
-              onPressed: () async{
-                String? mail=await LocalStorage.readMail();
-                String? phone=await LocalStorage.readPhone();
-               await regController.postRegistration(
+              onPressed: () async {
+                String? mail = await LocalStorage.readMail();
+                String? phone = await LocalStorage.readPhone();
+                await regController.postRegistration(
                     context,
                     RegModel(
                         name: regController.fullnameController.text,
@@ -277,23 +277,24 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         balanceAmount: double.tryParse(
                                 regController.balancAmountController.text) ??
                             0.0,
-                        dateAndTime: regController.selectedDateFormatted??"",
+                        dateAndTime: regController.selectedDateFormatted ?? "",
                         male: [],
                         female: [],
                         branch: regController.selectedbranch ?? "",
                         treatments: []));
-                        generatePDF(
-                          address: regController.addresController.text,
-                          name: regController.fullnameController.text,
-                          branch: regController.selectedbranch,
-                          date: regController.selectedDateFormatted??"",
-                          time: regController.selectedDateFormatted??"",
-                          email: mail,
-                          phone: phone,
-                          gst: "",
-                          booked: "${Utils.converDateFormateForReg(DateTime.now().toString())}| ${DateFormat('hh:mm a').format(DateTime.now())}",
-                          patient: Patient(), 
-                        );
+                generatePDF(
+                  address: regController.addresController.text,
+                  name: regController.fullnameController.text,
+                  branch: regController.selectedbranch,
+                  date: regController.selectedDateFormatted ?? "",
+                  time: regController.selectedDateFormatted ?? "",
+                  email: mail,
+                  phone: phone,
+                  gst: "",
+                  booked:
+                      "${Utils.converDateFormateForReg(DateTime.now().toString())}| ${DateFormat('hh:mm a').format(DateTime.now())}",
+                  patient: Patient(),
+                );
               },
               borderColor: ColorConstents.buttonColor,
             )
