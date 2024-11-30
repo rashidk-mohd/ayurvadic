@@ -12,7 +12,7 @@ class HomeRepository {
       const url = "https://flutter-amr.noviindus.in/api/PatientList";
       final response = await http.get(Uri.parse(url), headers: {
         'Content-Type': 'application/json',
-        'Authorization': 'Bearer $token', // Add token for authorization
+        'Authorization': 'Bearer $token',
       });
       if (response.statusCode == 200 || response.statusCode == 201) {
         List<Patient> patientList = [];

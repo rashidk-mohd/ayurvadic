@@ -8,13 +8,11 @@ import 'package:ayurvadic/contants/routes_const.dart';
 import 'package:ayurvadic/core/utils.dart';
 import 'package:ayurvadic/features/home/controllers/home_controller.dart';
 import 'package:ayurvadic/features/home/models/patientList_model.dart';
-import 'package:ayurvadic/features/home/repository/home_repository.dart';
 import 'package:ayurvadic/features/home/widgets/home_content_card.dart';
 import 'package:ayurvadic/features/home/widgets/pdf_widget.dart';
 import 'package:ayurvadic/features/home/widgets/search_widget.dart';
 import 'package:ayurvadic/features/home/widgets/sorting_widget.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
 import 'package:pdf/widgets.dart' as pw;
@@ -111,8 +109,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: ButtonWidget(
           title: "Register Now",
           onPressed: () {
-            // Navigator.of(context).pushNamed(Routes.registation);
-            _generatePDF();
+            Navigator.of(context).pushNamed(Routes.registation);
           },
           buttonColor: ColorConstents.buttonColor,
         ),
@@ -124,7 +121,6 @@ class _HomeScreenState extends State<HomeScreen> {
 Future<void> _generatePDF() async {
   final pdf = pw.Document();
   log("message");
-  // Add a page to the PDF
   pdf.addPage(
     pw.Page(
       build: (pw.Context context) {
