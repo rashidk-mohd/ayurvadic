@@ -6,7 +6,10 @@ import 'package:ayurvadic/common/dropdown_text_field.dart';
 import 'package:ayurvadic/contants/color_constents.dart';
 import 'package:ayurvadic/contants/path_constsnts.dart';
 import 'package:ayurvadic/core/app_responsive.dart';
+import 'package:ayurvadic/core/local_storage.dart';
 import 'package:ayurvadic/core/utils.dart';
+import 'package:ayurvadic/features/home/models/patientList_model.dart';
+import 'package:ayurvadic/features/home/widgets/pdf.dart';
 import 'package:ayurvadic/features/registration/controller/reg_controller.dart';
 import 'package:ayurvadic/features/registration/models/reg_model.dart';
 import 'package:ayurvadic/features/registration/repository/reg_repository.dart';
@@ -16,6 +19,7 @@ import 'package:ayurvadic/features/registration/widgets/gender_count_widget.dart
 import 'package:ayurvadic/features/registration/widgets/payment_option_widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 class RegistrationScreen extends StatefulWidget {
@@ -250,8 +254,10 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             ButtonWidget(
               title: "Save",
               buttonColor: ColorConstents.buttonColor,
-              onPressed: () {
-                regController.postRegistration(
+              onPressed: () async {
+                String? mail = await LocalStorage.readMail();
+                String? phone = await LocalStorage.readPhone();
+                await regController.postRegistration(
                     context,
                     RegModel(
                         name: regController.fullnameController.text,
@@ -271,11 +277,24 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                         balanceAmount: double.tryParse(
                                 regController.balancAmountController.text) ??
                             0.0,
-                        dateAndTime: regController.selectedDateFormatted??"",
+                        dateAndTime: regController.selectedDateFormatted ?? "",
                         male: [],
                         female: [],
                         branch: regController.selectedbranch ?? "",
                         treatments: []));
+                generatePDF(
+                  address: regController.addresController.text,
+                  name: regController.fullnameController.text,
+                  branch: regController.selectedbranch,
+                  date: regController.selectedDateFormatted ?? "",
+                  time: regController.selectedDateFormatted ?? "",
+                  email: mail,
+                  phone: phone,
+                  gst: "",
+                  booked:
+                      "${Utils.converDateFormateForReg(DateTime.now().toString())}| ${DateFormat('hh:mm a').format(DateTime.now())}",
+                  patient: Patient(),
+                );
               },
               borderColor: ColorConstents.buttonColor,
             )

@@ -16,13 +16,15 @@ class RegRepository {
       final response = await http.post(
         Uri.parse(url),
         headers: {
-          'Content-Type': 'application/json',
           'Authorization': 'Bearer $token',
+          'Content-Type': 'application/x-www-form-urlencoded',
+          
         },
         body: jsonEncode(model.toJson()),
       );
+      log("posst==========${response.body}");
       if (response.statusCode == 200 || response.statusCode == 201) {
-        log("posst==========${response.statusCode}");
+        
         return true;
       } else {
         log("posst==========${response.statusCode}");

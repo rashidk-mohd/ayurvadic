@@ -2,7 +2,9 @@ import 'package:ayurvadic/contants/color_constents.dart';
 import 'package:ayurvadic/contants/path_constsnts.dart';
 import 'package:ayurvadic/core/app_responsive.dart';
 import 'package:ayurvadic/features/home/controllers/home_controller.dart';
+import 'package:ayurvadic/features/home/models/patientList_model.dart';
 import 'package:ayurvadic/features/home/widgets/content_icon_widget.dart';
+import 'package:ayurvadic/features/home/widgets/pdf.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -15,13 +17,25 @@ class HomeContentCard extends StatelessWidget {
       required this.date,
       required this.time,
       required this.user,
-      required this.tretmentName});
+      required this.adress,
+      required this.branch,
+      required this.email,
+      required this.gst,
+      required this.tretmentName,
+      required this.patient,
+      this.phone});
   final int? index;
   final String? name;
   final String? tretmentName;
   final String? date;
   final String? time;
   final String? user;
+  final String? adress;
+  final String? branch;
+  final String? gst;
+  final String? email;
+  final String? phone;
+  final Patient patient;
 
   @override
   Widget build(BuildContext context) {
@@ -78,9 +92,9 @@ class HomeContentCard extends StatelessWidget {
                       path: PathConstsnts.calender,
                       text: date ?? "",
                     ),
-                     ContentIconWidget(
+                    ContentIconWidget(
                       path: PathConstsnts.person,
-                      text: user??"",
+                      text: user ?? "",
                     ),
                   ],
                 ),
@@ -90,20 +104,36 @@ class HomeContentCard extends StatelessWidget {
                 height: 2,
                 color: ColorConstents.colorGrey.withOpacity(0.2),
               ),
-              const Padding(
+              Padding(
                 padding: const EdgeInsets.only(top: 5),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  children: [
-                     Text(
-                      "View Booking details",
-                      style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.w300,
-                          color: ColorConstents.textcolor),
-                    ),
-                     Icon(CupertinoIcons.chevron_forward),
-                  ],
+                child: InkWell(
+                  onTap: () {
+
+                    generatePDF(
+                      patient: patient,
+                        address: adress ?? "",
+                        name: name ?? "",
+                        branch: branch ?? "",
+                        date: date ?? "",
+                        time: time ?? "",
+                        gst: gst ?? "",
+                        email: email ?? "",
+                        booked: "",
+                        phone: phone ?? "");
+                  },
+                  child: const Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                    children: [
+                      Text(
+                        "View Booking details",
+                        style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w300,
+                            color: ColorConstents.textcolor),
+                      ),
+                      Icon(CupertinoIcons.chevron_forward),
+                    ],
+                  ),
                 ),
               ),
             ],

@@ -17,7 +17,7 @@ class HomeRepository {
       if (response.statusCode == 200 || response.statusCode == 201) {
         List<Patient> patientList = [];
         var responseData = jsonDecode(response.body) as Map;
-        log('${ responseData["patient"][0] }');
+        log('0 ${ responseData["patient"][2] }');
         List<dynamic> patientResponseList =
             responseData["patient"] as List<dynamic>;
         for (var value in patientResponseList) {
