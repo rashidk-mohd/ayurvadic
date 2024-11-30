@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:ayurvadic/contants/routes_const.dart';
+import 'package:ayurvadic/core/utils.dart';
 import 'package:ayurvadic/features/auth/repository/auth_repository.dart';
 import 'package:flutter/material.dart';
 
@@ -16,7 +17,7 @@ class AuthController with ChangeNotifier {
       // ignore: use_build_context_synchronously
       Navigator.of(context).pushReplacementNamed(Routes.home);
     }else{
-      print("Error");
+      Utils.showErrorSnackbar();
     }
     isLoading = false;
     log(isLoading.toString());

@@ -1,3 +1,4 @@
+import 'package:ayurvadic/core/utils.dart';
 import 'package:ayurvadic/features/auth/controller/aut_controller.dart';
 import 'package:ayurvadic/features/auth/screens/login_screen.dart';
 import 'package:ayurvadic/features/home/controllers/home_controller.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
+        scaffoldMessengerKey: scaffoldMessengerKey,
         title: 'Flutter Demo',
         theme: ThemeData(
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),

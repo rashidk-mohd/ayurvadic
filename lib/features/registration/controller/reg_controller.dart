@@ -35,7 +35,8 @@ class RegController with ChangeNotifier {
     if (result) {
       Navigator.of(context).pushNamed(Routes.home);
     } else {
-      print("post error");
+      log("err0r");
+      Utils.showErrorSnackbar();
     }
     isLoading = false;
     notifyListeners();
@@ -58,7 +59,7 @@ class RegController with ChangeNotifier {
     if (result.error == null) {
       treatments = result.treatment ?? [];
     } else {
-      print("post error");
+       Utils.showErrorSnackbar();
     }
   }
 
