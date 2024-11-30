@@ -9,6 +9,7 @@ import 'package:http/http.dart' as http;
 
 class RegRepository {
   Future<bool> postRegistration(RegModel model) async {
+    log("modelmodel ${model.toJson()}");
     try {
       String? token = await LocalStorage.readToken();
       const url = "https://flutter-amr.noviindus.in/api/PatientUpdate";

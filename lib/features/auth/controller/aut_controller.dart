@@ -10,17 +10,17 @@ class AuthController with ChangeNotifier {
   AuthRepository auth = AuthRepository();
   Future<void> login(BuildContext context,
       {String? userName, String? password}) async {
-    isLoading = true;log(isLoading.toString());
+    isLoading = true;
+    notifyListeners();
     final result = await auth.login(password: password, userName: userName);
-    print(result);
+
     if (result) {
       // ignore: use_build_context_synchronously
       Navigator.of(context).pushReplacementNamed(Routes.home);
-    }else{
+    } else {
       Utils.showErrorSnackbar();
     }
     isLoading = false;
-    log(isLoading.toString());
     notifyListeners();
   }
 }

@@ -191,21 +191,25 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                     title: "Enter your Amount",
                     header: "Total Amount",
                     controller: regController.totalAmountController,
+                    keyboardType: TextInputType.number,
                   ),
                   CustomTextField(
                     title: "Enter your Amount",
                     header: "Discount Amount",
                     controller: regController.discountamoutcontroller,
+                    keyboardType: TextInputType.number,
                   ),
                   CustomTextField(
                     title: "Enter your Amount",
                     header: "Advance Amount",
-                    controller: regController.discountamoutcontroller,
+                    controller: regController.advanceAmountController,
+                    keyboardType: TextInputType.number,
                   ),
                   CustomTextField(
                     title: "Enter your Amount",
                     header: "Balance Amount ",
                     controller: regController.balancAmountController,
+                    keyboardType: TextInputType.number,
                   ),
                   CustomTextField(
                     title: "Enter your date",
@@ -286,6 +290,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
                               dateAndTime: regController.selectedDateFormatted ?? "",
                               male: [],
                               female: [],
+                              id: "",
                               branch: regController.selectedbranch ?? "",
                               treatments: []));
                       generatePDF(

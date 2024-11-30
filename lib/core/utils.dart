@@ -25,8 +25,8 @@ static  String converDateFormate(String? givenDate){
   return formattedDate;
   }
 static  String converDateFormateForReg(String? givenDate){
-     String inputDate = "2024-11-23 00:00:00.000";
-  DateTime parsedDate = DateTime.parse(inputDate);
+     
+  DateTime parsedDate = DateTime.parse(givenDate!);
   String formattedDate = DateFormat('yyyy-MM-dd').format(parsedDate);
   
   print(formattedDate);

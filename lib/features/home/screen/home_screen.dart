@@ -25,99 +25,103 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  List<Patient> filteredItems = [];
   TextEditingController searchController = TextEditingController();
   @override
   void initState() {
     Provider.of<HomeController>(context, listen: false).getPatientList();
+
     super.initState();
   }
 
+  Future<void> _refresh() async {
+    Provider.of<HomeController>(context, listen: false).getPatientList();
+  }
   @override
   Widget build(BuildContext context) {
     final homeController = Provider.of<HomeController>(context);
-    return Scaffold(
-      appBar: AppBar(
-        leading: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Image.asset(
-            PathConstsnts.backarrow,
-            height: 24,
-            width: 24,
-          ),
-        ),
-        actions: [
-          Padding(
+    return RefreshIndicator(
+      onRefresh: _refresh  ,
+      child: Scaffold(
+        appBar: AppBar(
+          leading: Padding(
             padding: const EdgeInsets.all(8.0),
             child: Image.asset(
-              PathConstsnts.notificationicon,
+              PathConstsnts.backarrow,
               height: 24,
               width: 24,
             ),
           ),
-        ],
-      ),
-      body: homeController.isLoading
-          ? const Center(
-              child: CircularProgressIndicator(),
-            )
-          : Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  const SearchWidget(),
-                  const SortingWidget(),
-                  const SizedBox(
-                    height: 20,
-                  ),
-                  Container(
-                    width: double.infinity,
-                    height: 2,
-                    color: ColorConstents.colorGrey.withOpacity(0.2),
-                  ),
-                  Expanded(
-                    child: ListView.builder(
-                      itemCount: homeController.patientList.length,
-                      itemBuilder: (context, index) {
-                        final patientList = homeController.patientList[index];
-                        return HomeContentCard(
-                          index: index,
-                          patient: patientList,
-                          adress: patientList.address,
-                          branch: patientList.branch?.name ?? "",
-                          email: patientList.branch?.mail ?? "",
-                          gst: patientList.branch?.gst ?? "",
-                          phone: patientList.phone,
-                          name: patientList.name,
-                          time: patientList.dateNdTime == null
-                              ? ""
-                              : Utils.converDateFormate(
-                                  patientList.dateNdTime.toString()),
-                          tretmentName:
-                              patientList.patientdetailsSet![0].treatmentName,
-                          date: patientList.dateNdTime == null
-                              ? ""
-                              : Utils.converDateFormate(
-                                  patientList.dateNdTime.toString()),
-                                  
-                          user: patientList.user,
-
-                        );
-                      },
-                    ),
-                  )
-                ],
+          actions: [
+            Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Image.asset(
+                PathConstsnts.notificationicon,
+                height: 24,
+                width: 24,
               ),
             ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: ButtonWidget(
-          title: "Register Now",
-          onPressed: () {
-            Navigator.of(context).pushNamed(Routes.registation);
-          },
-          buttonColor: ColorConstents.buttonColor,
+          ],
+        ),
+        body: homeController.isLoading
+            ? const Center(
+                child: CircularProgressIndicator(),
+              )
+            : Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SearchWidget(),
+                    const SortingWidget(),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Container(
+                      width: double.infinity,
+                      height: 2,
+                      color: ColorConstents.colorGrey.withOpacity(0.2),
+                    ),
+                    Expanded(
+                      child: ListView.builder(
+                        itemCount: homeController.filteredItems.length,
+                        itemBuilder: (context, index) {
+                          final patientList = homeController.filteredItems[index];
+                          return HomeContentCard(
+                            index: index,
+                            patient: patientList,
+                            adress: patientList.address,
+                            branch: patientList.branch?.name ?? "",
+                            email: patientList.branch?.mail ?? "",
+                            gst: patientList.branch?.gst ?? "",
+                            phone: patientList.phone,
+                            name: patientList.name,
+                            time: patientList.dateNdTime == null
+                                ? ""
+                                : Utils.converDateFormate(
+                                    patientList.dateNdTime.toString()),
+                            tretmentName:
+                                patientList.patientdetailsSet![0].treatmentName,
+                            date: patientList.dateNdTime == null
+                                ? ""
+                                : Utils.converDateFormate(
+                                    patientList.dateNdTime.toString()),
+                            user: patientList.user,
+                          );
+                        },
+                      ),
+                    )
+                  ],
+                ),
+              ),
+        bottomNavigationBar: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: ButtonWidget(
+            title: "Register Now",
+            onPressed: () {
+              Navigator.of(context).pushNamed(Routes.registation);
+            },
+            buttonColor: ColorConstents.buttonColor,
+          ),
         ),
       ),
     );

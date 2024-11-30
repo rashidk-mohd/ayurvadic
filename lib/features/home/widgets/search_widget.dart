@@ -1,7 +1,9 @@
 import 'package:ayurvadic/common/botton_widget.dart';
 import 'package:ayurvadic/common/common_textfield.dart';
 import 'package:ayurvadic/contants/color_constents.dart';
+import 'package:ayurvadic/features/home/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SearchWidget extends StatelessWidget {
   const SearchWidget({
@@ -10,13 +12,17 @@ class SearchWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final homeController = Provider.of<HomeController>(context);
     return Row(
       children: [
-        const Expanded(
+        Expanded(
           flex: 3,
           child: CustomTextField(
+            onChanged: (p0) {
+              homeController.filterItems(p0);
+            },
             header: "",
-            iconWidget:Icon(Icons.search) ,
+            iconWidget: const Icon(Icons.search),
             title: "Search for treatment",
           ),
         ),

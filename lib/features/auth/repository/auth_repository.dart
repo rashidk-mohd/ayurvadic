@@ -15,10 +15,11 @@ class AuthRepository {
           'Content-Type': 'application/x-www-form-urlencoded',
         },
         body: {
-          'username': "test_user",
-          'password': "12345678",
+          'username': userName,
+          'password': password,
         },
       );
+      log("${response.statusCode}");
       if (response.statusCode == 200 || response.statusCode == 201) {
         log(response.body.toString());
         Map<String, dynamic> resposneData = jsonDecode(response.body);
