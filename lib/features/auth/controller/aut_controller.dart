@@ -1,13 +1,25 @@
+import 'dart:developer';
+
+import 'package:ayurvadic/contants/routes_const.dart';
 import 'package:ayurvadic/features/auth/repository/auth_repository.dart';
 import 'package:flutter/material.dart';
 
 class AuthController with ChangeNotifier {
-  bool isLoading=false;
+  bool isLoading = false;
   AuthRepository auth = AuthRepository();
-  Future<void> login({String? userName, String? password}) async {
-    isLoading=true;
-    auth.login(password: password, userName: userName);
-     isLoading=false;
-     notifyListeners();
+  Future<void> login(BuildContext context,
+      {String? userName, String? password}) async {
+    isLoading = true;log(isLoading.toString());
+    final result = await auth.login(password: password, userName: userName);
+    print(result);
+    if (result) {
+      // ignore: use_build_context_synchronously
+      Navigator.of(context).pushReplacementNamed(Routes.home);
+    }else{
+      print("Error");
+    }
+    isLoading = false;
+    log(isLoading.toString());
+    notifyListeners();
   }
 }
