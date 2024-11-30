@@ -21,7 +21,12 @@ class AuthRepository {
       if (response.statusCode == 200 || response.statusCode == 201) {
         log(response.body.toString());
         Map<String, dynamic> resposneData = jsonDecode(response.body);
+
         LocalStorage.writeToken(resposneData["token"]);
+
+        Map<String,dynamic> userDetails=resposneData["user_details"] as Map<String,dynamic>;
+        LocalStorage.writePhne(userDetails["phone"]);
+        LocalStorage.writeMail(resposneData["mail"]);
         return true;
       } else {
         return false;
