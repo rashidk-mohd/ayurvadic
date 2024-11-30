@@ -17,11 +17,14 @@ class RegRepository {
         headers: {
           'Authorization': 'Bearer $token',
           'Content-Type': 'application/x-www-form-urlencoded',
-          
         },
-        body: jsonEncode(model.toJson()),
+        body: model
+            .toJson()
+            .entries
+            .map((e) => '${e.key}=${Uri.encodeComponent(e.value.toString())}')
+            .join('&'),
       );
-      
+      log("posst==========${response.body}");
       if (response.statusCode == 200 || response.statusCode == 201) {
         log("posst==========${response.body}");
         return true;
