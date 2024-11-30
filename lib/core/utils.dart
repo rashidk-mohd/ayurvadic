@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
+final GlobalKey<ScaffoldMessengerState> scaffoldMessengerKey =
+    GlobalKey<ScaffoldMessengerState>();
 class Utils {
   static const List<String> paymentOptions = [
     "Cash",
@@ -31,4 +32,14 @@ static  String converDateFormateForReg(String? givenDate){
   print(formattedDate);
   return formattedDate;
   }
+  static void showErrorSnackbar() {
+  scaffoldMessengerKey.currentState?.showSnackBar(
+  const  SnackBar(
+      content: Text("Something went wrong"),
+      backgroundColor: Colors.red,
+      behavior: SnackBarBehavior.floating,
+      duration:  Duration(seconds: 3),
+    ),
+  );
+}
 }

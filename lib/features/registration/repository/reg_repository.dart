@@ -11,7 +11,6 @@ class RegRepository {
   Future<bool> postRegistration(RegModel model) async {
     try {
       String? token = await LocalStorage.readToken();
-
       const url = "https://flutter-amr.noviindus.in/api/PatientUpdate";
       final response = await http.post(
         Uri.parse(url),
@@ -22,9 +21,9 @@ class RegRepository {
         },
         body: jsonEncode(model.toJson()),
       );
-      log("posst==========${response.body}");
+      
       if (response.statusCode == 200 || response.statusCode == 201) {
-        
+        log("posst==========${response.body}");
         return true;
       } else {
         log("posst==========${response.statusCode}");
