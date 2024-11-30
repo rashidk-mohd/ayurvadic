@@ -8,9 +8,16 @@ import 'package:ayurvadic/features/auth/widgets/app_logo_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
+  @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  TextEditingController userNameController = TextEditingController();
+  TextEditingController passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -38,34 +45,38 @@ class LoginScreen extends StatelessWidget {
             ),
           ),
 
-          const Padding(
-            padding: EdgeInsets.only(left: 12, right: 12, bottom: 30),
+          Padding(
+            padding: const EdgeInsets.only(left: 12, right: 12, bottom: 30),
             child: CustomTextField(
-              header: "Email",
-              title: "Enter your email",
+              controller: userNameController,
+              header: "Username",
+              title: "Enter your username",
             ),
           ),
 
-          const Padding(
-            padding: EdgeInsets.only(left: 12, right: 12, bottom: 50),
+          Padding(
+            padding: const EdgeInsets.only(left: 12, right: 12, bottom: 50),
             child: CustomTextField(
+              controller: passwordController,
               header: "Password",
               title: "Enter your password",
             ),
           ),
           Padding(
             padding: const EdgeInsets.only(left: 12, right: 12, top: 30),
-            child: Consumer<AuthController>(
-              builder: (context, value, child) =>  ButtonWidget(
-                isLoading: value.isLoading,
-                title: "Login",
-                onPressed: () {
-                  value.login(userName: "test_user", password: "12345678");
-                  // Navigator.of(context).pushReplacementNamed(Routes.home);
-                },
-                titleColor: Colors.white,
-                fontSize: 17,
-                buttonColor: ColorConstents.buttonColor,
+            child:  Consumer<AuthController>(
+              builder: (context, value, child) => ButtonWidget(
+                  isLoading: value.isLoading,
+                  title: "Login",
+                  onPressed: () {
+                    value.login(context,
+                        userName: userNameController.text.trim(),
+                        password: passwordController.text.trim());
+                  },
+                  titleColor: Colors.white,
+                  fontSize: 17,
+                  buttonColor: ColorConstents.buttonColor,
+                
               ),
             ),
           ),
