@@ -1,7 +1,11 @@
 import 'package:ayurvadic/common/common_textfield.dart';
+import 'package:ayurvadic/common/dropdown_text_field.dart';
 import 'package:ayurvadic/contants/color_constents.dart';
+import 'package:ayurvadic/core/utils.dart';
+import 'package:ayurvadic/features/home/controllers/home_controller.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class SortingWidget extends StatelessWidget {
   const SortingWidget({
@@ -10,6 +14,7 @@ class SortingWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final homeController = Provider.of<HomeController>(context, listen: false);
     return Padding(
       padding: const EdgeInsets.only(top: 20),
       child: Row(
@@ -22,13 +27,21 @@ class SortingWidget extends StatelessWidget {
                 fontWeight: FontWeight.w500,
                 color: ColorConstents.textcolor2),
           ),
-          const SizedBox(
+          SizedBox(
             width: 160,
-            child: CustomTextField(
-              header: "",
-              borderRadius: 30,
-              title: "Date",
-              suffixWidget: Icon(CupertinoIcons.chevron_down),
+            child: InkWell(
+              onTap: () {
+                homeController.sortListByDate(context);
+              },
+              child: CustomTextField(
+                controller: TextEditingController(
+                    text: homeController.selectedDateFormatted ?? ""),
+                enable: false,
+                header: "",
+                borderRadius: 30,
+                title: "Date",
+                suffixWidget: const Icon(CupertinoIcons.chevron_down),
+              ),
             ),
           )
         ],

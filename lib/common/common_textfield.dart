@@ -19,6 +19,7 @@ class CustomTextField extends StatelessWidget {
   final double? borderRadius;
   final void Function(String)? onChanged;
   final String? header;
+  final bool? enable;
 
   const CustomTextField({
     super.key,
@@ -38,6 +39,7 @@ class CustomTextField extends StatelessWidget {
     this.onChanged,
     this.suffixWidget,
     this.borderRadius,
+    this.enable
   });
 
   @override
@@ -57,6 +59,7 @@ class CustomTextField extends StatelessWidget {
       ),
         const SizedBox(height: 10,),
         TextFormField(
+          enabled: enable??true,
           maxLines: lines,
           inputFormatters:
               digitOnly ? [FilteringTextInputFormatter.digitsOnly] : null,
