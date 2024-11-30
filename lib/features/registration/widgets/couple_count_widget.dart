@@ -1,9 +1,11 @@
 import 'package:ayurvadic/contants/color_constents.dart';
 import 'package:ayurvadic/contants/path_constsnts.dart';
 import 'package:ayurvadic/core/app_responsive.dart';
+import 'package:ayurvadic/features/registration/controller/reg_controller.dart';
 import 'package:ayurvadic/features/registration/widgets/couple_count_box__widget.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CoupleCountWidget extends StatelessWidget {
   const CoupleCountWidget({
@@ -12,6 +14,7 @@ class CoupleCountWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final regController = Provider.of<RegController>(context);
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -52,18 +55,18 @@ class CoupleCountWidget extends StatelessWidget {
               const SizedBox(
                 height: 20,
               ),
-              const Row(
+              Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   CoupleCountBoxwidget(
-                    count: 0,
+                    count: regController.malecount,
                     gender: "Male",
                   ),
                   CoupleCountBoxwidget(
-                    count: 0,
+                    count: regController.femaleCount,
                     gender: "Female",
                   ),
-                  Icon(
+                  const Icon(
                     Icons.edit,
                     color: ColorConstents.buttonColor,
                   )

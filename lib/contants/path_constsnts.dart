@@ -9,5 +9,5 @@ static const notificationicon="assets/icons/notification_icon.png";
 static const person="assets/icons/person.png";
 static const calender="assets/icons/calender_icon.png";
 static const close="assets/icons/close.png";
-static const treatmentCalender="assets/icons/treatment_calender.png";
+static const treatmentCalender="assets/icons/treament_calender.png";
 }
